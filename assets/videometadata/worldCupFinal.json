@@ -1,0 +1,20 @@
+{
+  "title": "France vs Croatia",
+  "image": "https://divademo.deltatre.net/DIVAProduct/www/Data/Diva5.0Test/img/diva_500080.jpg",
+  "eventId": "108606",
+  "programDateTime": "2018-07-15T13:40:15.681Z",
+  "trimIn": 4680858,
+  "trimOut": 11641166,
+  "sources": [
+    {
+      "uri": "https://vod-ffwddevamsmediaservice.streaming.mediaservices.windows.net/6e8b64ef-feb3-4ea9-9c63-32ef7b45e1dd/6e8b64ef-feb3-4ea9-9c63-32ef7b45.ism/manifest(format=m3u8-aapl,filter=hls)",
+      "format": "HLS",
+      "drm": {
+        "type": "none"
+      }
+    }
+  ],
+  "recommendation": { "autoLoadTime": 0 },
+  "behaviour": { "spoilerMode": "highlights", "timelineMode": "alternate" },
+  "videoId": "fracro_alt_timeline"
+}
