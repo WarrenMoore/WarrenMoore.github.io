@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @media all {
+        html {
+          height: 100%;
+          width: 100%;
+        }
+        *,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        canvas {
+          position: absolute;
+          z-index: 2;
+        }
+        body {
+          width: 100%;
+          height: 100%;
+        }
+        #debug-box {
+          background: rgba(0, 0, 0, 0.8);
+          color: #fff;
+          font-family: monospace;
+          font-size: 20px;
+          font-weight: bold;
+          padding: 20px;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+          z-index: 3;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@latest"></script>
+  </head>
+  <body>
+    <div id="debug-box">
+      <div>
+        Supports Canvas2D:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="canvas-2d" style="color: green">YES</span>
+      </div> 
+      <div>
+        Supports WebGL:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="webGL"></span>
+      </div>
+      <div>
+        Supports requestAnimationFrame: <span id="requestAnimationFrame"></span>
+      </div>
+      <br />
+      <div id="browser-os"></div>
+    </div>
+    <script>
+      function webgl_support () { 
+        try {
+          var canvas = document.createElement('canvas'); 
+          return !!window.WebGLRenderingContext &&
+            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+        } catch(e) {
+          return false;
+        }
+      };
+
+      var supportsWebGL = webgl_support();
+      var webGLSpan = document.getElementById("webGL");
+      if (supportsWebGL) {
+        webGLSpan.innerHTML = "YES";
+        webGLSpan.style.color = "green";
+      } else {
+        webGLSpan.innerHTML = "&nbsp;NO";
+        webGLSpan.style.color = "red";
+      }
+
+      var requestAnimationFrameSpan = document.getElementById("requestAnimationFrame");
+      if (window.requestAnimationFrame !== undefined) {
+        requestAnimationFrameSpan.innerHTML = "YES";
+        requestAnimationFrameSpan.style.color = "green";
+      } else {
+        requestAnimationFrameSpan.innerHTML = "&nbsp;NO";
+        requestAnimationFrameSpan.style.color = "red";
+      }
+
+      var ua = new UAParser(window.navigator.userAgent);
+      var browser = ua.getBrowser();
+      var os = ua.getOS();
+      document.getElementById("browser-os").innerHTML = "Running " + browser.name + " " + browser.version + " on " + os.name + " " + os.version;
+    </script>
+    <script data-consolejs-channel="3741615c-d681-c912-4fbc-9108cfe7f703" src="https://remotejs.com/agent/agent.js"></script>
+    <script src="./dependencies.es5.production.js"></script>
+    <script src="./appBundle.js"></script>
+    <script>
+      var settings = {"appSettings":{"stage":{"w":"auto","h":"auto","precision":"auto","memoryPressure":24000000,"clearColor":0,"defaultFontFace":"sans-serif","fixedDt":0,"useImageWorker":true,"autostart":true,"canvas2d":!supportsWebGL},"debug":true,"keys":{"27":"Back"},"name":"BritBox CDTV","identifier":"uk.fxdigital.britbox.cdtv","version":"0.0.0","icon":"./static/icon.png","id":"uk.fxdigital.britbox.cdtv","safeId":"APP_uk_fxdigital_britbox_cdtv"},"platformSettings":{"inspector":true,"path":"./static","log":false,"showVersion":true,"showFps":true,"textureMode":false,"esEnv":"es5","imageServerUrl":null,"proxyUrl":null,"router":{"updateHash":false}}};
+      var app = window[settings.appSettings.safeId](settings.appSettings, settings.platformSettings, settings.appData)
+      document.body.appendChild(app.stage.getCanvas())
+    </script>
+  
+      <script>
+        var socket = new WebSocket('ws://127.0.0.1:3000');
+        socket.addEventListener('open', function() {
+          console.log('WebSocket connection succesfully opened - live reload enabled');
+        });
+        socket.addEventListener('close', function() {
+          console.log('WebSocket connection closed - live reload disabled');
+        });
+        socket.addEventListener('message', function(event) {
+          if(event.data === 'reload'){
+            document.location.reload();
+          }
+        });
+      </script>
+    </body>
+</html>

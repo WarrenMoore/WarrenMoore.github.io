@@ -1,0 +1,34 @@
+{
+  "appSettings": {
+    "stage": {
+      "w": "auto",
+      "h": "auto",
+      "precision": "auto",
+      "memoryPressure": 24000000,
+      "clearColor": 0,
+      "defaultFontFace": "sans-serif",
+      "fixedDt": 0,
+      "useImageWorker": true,
+      "autostart": true,
+      "canvas2d": false
+    },
+    "debug": false,
+    "keys": {
+      "27": "Back"
+    }
+  },
+  "platformSettings": {
+    "inspector": false,
+    "path": "./static",
+    "log": false,
+    "showVersion": true,
+    "showFps": true,
+    "textureMode": false,
+    "esEnv": "es5",
+    "imageServerUrl": null,
+    "proxyUrl": null,
+    "router": {
+      "updateHash": false
+    }
+  }
+}

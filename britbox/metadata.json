@@ -1,0 +1,6 @@
+{
+  "name": "BritBox CDTV",
+  "identifier": "uk.fxdigital.britbox.cdtv",
+  "version": "0.0.0",
+  "icon": "./static/icon.png"
+}
