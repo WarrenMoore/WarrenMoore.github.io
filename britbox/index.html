@@ -95,20 +95,5 @@
       var app = window[settings.appSettings.safeId](settings.appSettings, settings.platformSettings, settings.appData)
       document.body.appendChild(app.stage.getCanvas())
     </script>
-  
-      <script>
-        var socket = new WebSocket('ws://127.0.0.1:3000');
-        socket.addEventListener('open', function() {
-          console.log('WebSocket connection succesfully opened - live reload enabled');
-        });
-        socket.addEventListener('close', function() {
-          console.log('WebSocket connection closed - live reload disabled');
-        });
-        socket.addEventListener('message', function(event) {
-          if(event.data === 'reload'){
-            document.location.reload();
-          }
-        });
-      </script>
     </body>
 </html>
